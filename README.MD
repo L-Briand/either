@@ -2,6 +2,33 @@
 
 `Either` and `Option` implementation in kotlin Multiplatform.
 
+## Import from maven
+
+
+### Multiplatform
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+val commonMain by getting {
+    dependencies {
+        implementation("net.orandja.kt:either:1.0.0")
+    }
+}
+```
+
+### Jvm
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation("net.orandja.kt:either:1.0.0")
+}
+```
+
 ## Usage
 
 ### Either
