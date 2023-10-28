@@ -4,165 +4,169 @@ import kotlinx.serialization.Serializable
 
 /**
  * Base implementation.
- * Can either be [Value] or [Empty]
+ * Can either be [Some] or [None]
  */
 @Serializable(OptionSerializer::class)
 sealed class Option<out T> {
-    /** Underlying value of [Value] implementation */
+    /** Underlying value of [Some] implementation */
     abstract val value: T
 
-    /** @return [Value.value] if possible or null */
+    /** @return [Some.value] if possible or null */
     abstract val valueOrNull: T?
 }
 
 /**
- * On a [Value] Option, calls the specified function [block] with [Value.value]
+ * On a [Some] Option, calls the specified function [block] with [Some.value]
  * @return `this`
  */
-inline fun <T> Option<T>.alsoValue(
+inline fun <T> Option<T>.alsoSome(
     block: (T) -> Unit,
 ): Option<T> {
-    if (this is Value) block(value)
+    if (this is Some) block(value)
     return this
 }
 
 /**
- * On a [Empty] Option, calls the specified function [block]
+ * On a [None] Option, calls the specified function [block]
  * @return `this`
  */
-inline fun <T> Option<T>.alsoEmpty(
+inline fun <T> Option<T>.alsoNone(
     block: () -> Unit,
 ): Option<T> {
-    if (this is Empty) block()
+    if (this is None) block()
     return this
 }
 
 /**
  * Depending on `this` kind:
- * - [Empty]: Calls the specified function [onEmpty].
- * - [Value]: Calls the specified function [onValue] with [Value.value].
+ * - [None]: Calls the specified function [onNone].
+ * - [Some]: Calls the specified function [onSome] with [Some.value].
  * @return `this`.
  */
 inline fun <T> Option<T>.also(
-    onEmpty: () -> Unit,
-    onValue: (T) -> Unit,
+    onNone: () -> Unit,
+    onSome: (T) -> Unit,
 ): Option<T> {
     when (this) {
-        Empty -> onEmpty()
-        is Value -> onValue(this.value)
+        None -> onNone()
+        is Some -> onSome(this.value)
     }
     return this
 }
 
 /**
- * On a [Value] Option, calls the specified function [block] to transform [Value.value].
- * @return New [Value] object with transformed [Option.value] value.
+ * On a [Some] Option, calls the specified function [block] to transform [Some.value].
+ * @return New [Some] object with transformed [Option.value] value.
  */
-inline fun <T, R> Option<T>.letValue(
+inline fun <T, R> Option<T>.letSome(
     block: (T) -> R,
 ) = when (this) {
-    is Value -> Value(value.let(block))
-    Empty -> Empty
+    is Some -> Some(value.let(block))
+    None -> None
 }
 
 /**
  * Depending on `this` Kind:
- * - [Empty]: Calls the specified function [onEmpty] to get [R] type object.
- * - [Value]: Calls the specified function [onValue] to transform [Value.value] into [L] type object.
+ * - [None]: Calls the specified function [onNone] to get [R] type object.
+ * - [Some]: Calls the specified function [onSome] to transform [Some.value] into [L] type object.
  * @return [Left]<[L]> or [Right]<[R]> found value.
  */
 inline fun <T, L, R> Option<T>.letAsLeft(
-    onValue: (T) -> L,
-    onEmpty: () -> R,
+    onSome: (T) -> L,
+    onNone: () -> R,
 ): Either<L, R> = when (this) {
-    Empty -> Right(onEmpty())
-    is Value -> Left(onValue(this.value))
+    None -> Right(onNone())
+    is Some -> Left(onSome(this.value))
 }
 
 /**
  * Depending on `this` Kind:
- * - [Empty]: Calls the specified function [onEmpty] to get [L] type object.
- * - [Value]: Calls the specified function [onValue] to transform [Value.value] into [R] type object.
+ * - [None]: Calls the specified function [onNone] to get [L] type object.
+ * - [Some]: Calls the specified function [onSome] to transform [Some.value] into [R] type object.
  * @return [Left]<[L]> or [Right]<[R]> found value.
  */
 inline fun <T, L, R> Option<T>.letAsRight(
-    onEmpty: () -> L,
-    onValue: (T) -> R,
+    onNone: () -> L,
+    onSome: (T) -> R,
 ): Either<L, R> = when (this) {
-    Empty -> Left(onEmpty())
-    is Value -> Right(onValue(this.value))
+    None -> Left(onNone())
+    is Some -> Right(onSome(this.value))
 }
 
 /**
+ * Depending on `this` Kind:
+ * - [None]:
+ */
+
+/**
  * Depending on `this` kind:
- * - [Empty]: Calls the specified function [block] to get [R] type object.
- * - [Value]<T>: Transform it into [Right]<T> value.
+ * - [None]: Calls the specified function [block] to get [R] type object.
+ * - [Some]<T>: Transform it into [Right]<T> value.
  * @return [Left]<[L]> or [Right]<[R]> found value.
  */
-inline fun <L, R> Option<L>.letEmptyAsRight(
+inline fun <L, R> Option<L>.letNoneAsRight(
     block: () -> R,
 ): Either<L, R> = when (this) {
-    is Value -> Left(value)
-    Empty -> Right(block())
+    is Some -> Left(value)
+    None -> Right(block())
 }
 
 /**
  * Depending on `this` kind:
- * - [Empty]: Calls the specified function [block] to get [L] type object.
- * - [Value]<T>: Transform it into [Left]<T> value.
+ * - [None]: Calls the specified function [block] to get [L] type object.
+ * - [Some]<T>: Transform it into [Left]<T> value.
  * @return [Left]<[L]> or [Right]<[R]> found value.
  */
-inline fun <R, L> Option<R>.letEmptyAsLeft(
+inline fun <R, L> Option<R>.letNoneAsLeft(
     block: () -> L,
 ): Either<L, R> = when (this) {
-    is Value -> Right(value)
-    Empty -> Left(block())
+    is Some -> Right(value)
+    None -> Left(block())
 }
 
-
 /**
- * Try to get [Value.value] or calls [block] to return or stops the current execution block.
- * @return [Value.value] value.
+ * Try to get [Some.value] or calls [block] to return or stops the current execution block.
+ * @return [Some.value] value.
  */
-inline fun <T> Option<T>.requireValue(
+inline fun <T> Option<T>.requireSome(
     block: () -> Nothing,
 ): T = when (this) {
-    Empty -> block()
-    is Value -> value
+    None -> block()
+    is Some -> value
 }
 
 /**
- * If `this` is [Value], calls [block] with `this` to return or stops the current execution block.
+ * If `this` is [Some], calls [block] with `this` to return or stops the current execution block.
  */
-inline fun <T> Option<T>.requireEmpty(
-    block: (Value<T>) -> Nothing,
+inline fun <T> Option<T>.requireNone(
+    block: (Some<T>) -> Nothing,
 ) {
-    if (this is Value) block(this)
+    if (this is Some) block(this)
 }
 
 /**
  * Depending on `this` kind:
- * - [Empty]: Calls the specified function [onEmpty] to get [O] type object.
- * - [Value]: Calls the specified function [onValue] to transform [Value.value] to [O] type.
+ * - [None]: Calls the specified function [onNone] to get [O] type object.
+ * - [Some]: Calls the specified function [onSome] to transform [Some.value] to [O] type.
  * @return Found [O] type object.
  */
 inline fun <T, O> Option<T>.foldBoth(
-    onValue: (T) -> O,
-    onEmpty: () -> O,
+    onSome: (T) -> O,
+    onNone: () -> O,
 ): O = when (this) {
-    Empty -> onEmpty()
-    is Value -> onValue(this.value)
+    None -> onNone()
+    is Some -> onSome(this.value)
 }
 
 /**
  * Depending on `this` kind:
- * - [Empty]: Calls the specified function [onEmpty] to get [T] type object.
- * - [Value]: Returns [Value.value] object.
+ * - [None]: Calls the specified function [block] to get [T] type object.
+ * - [Some]: Returns [Some.value] object.
  * @return Found [T] type object
  */
-inline fun <T> Option<T>.foldEmpty(
-    onEmpty: () -> T,
+inline fun <T> Option<T>.foldNone(
+    block: () -> T,
 ): T = when (this) {
-    Empty -> onEmpty()
-    is Value -> value
+    None -> block()
+    is Some -> value
 }

@@ -1,11 +1,13 @@
 package net.orandja.either
 
+import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmStatic
 
 /**
  * Right implementation of [Either]
  */
-class Right<out R>(override val right: R) : Either<Nothing, R>() {
+@Serializable(RightSerializer::class)
+data class Right<out R>(override val right: R) : Either<Nothing, R>() {
 
     /** Exception raised while trying to access [right] value on [Left] class. */
     class AccessLeftOnRightException(value: Any?) :
@@ -29,26 +31,14 @@ class Right<out R>(override val right: R) : Either<Nothing, R>() {
     override val left: Nothing
         get() = throw AccessLeftOnRightException(right)
 
-
-    /**
-     * Allow to destructure [right] value. Useful in lambda.
-     *
-     * Example:
-     * ```kotlin
-     * val right: Right = either.requireLeft { (error: Left) -> ... }
-     * ```
-     */
-    operator fun component1(): R = right
-
-
     /** @see Either.invert */
     override fun invert(): Either<R, Nothing> = Left(right)
 
     /** @see Either.leftAsOption */
-    override fun leftAsOption(): Option<Nothing> = Empty
+    override fun leftAsOption(): Option<Nothing> = None
 
     /** @see Either.rightAsOption */
-    override fun rightAsOption(): Option<R> = Value(right)
+    override fun rightAsOption(): Option<R> = Some(right)
 
     /** @see Either.leftOrNull */
     override val leftOrNull: Nothing? = null

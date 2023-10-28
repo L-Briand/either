@@ -11,9 +11,9 @@ However, it lets you use any Type as the second Type.
 `Option` is useful when you need to have a third state to your variable, like in a json object where a field 'presence'
 is important. (In most cases, using a nullable variable is fine.)
 
-1. My variable is not here `{}` -> `Empty`
-2. My variable is here but null `{"field":null}` -> `Value(null)`
-3. My variable is here `{"field":"value"}` -> `Value("value")`
+1. My variable is not here `{}` -> `None`
+2. My variable is here but null `{"field":null}` -> `Some(null)`
+3. My variable is here `{"field":"value"}` -> `Some("value")`
 
 ## Import from maven
 
@@ -25,7 +25,7 @@ repositories {
 }
 val commonMain by getting {
     dependencies {
-        implementation("net.orandja.kt:either:1.0.0")
+        implementation("net.orandja.kt:either:1.1.0")
     }
 }
 ```
@@ -37,7 +37,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("net.orandja.kt:either:1.0.0")
+    implementation("net.orandja.kt:either:1.1.0")
 }
 ```
 
@@ -60,7 +60,7 @@ val transformed: Either<Int?, ErrCode> = data.letLeft { it.toIntOrNull }
 // Transform left Int? to Float without exception.
 fun doSomething(value: Either<Int?, ErrCode>): Either<Float, ErrCode> {
 
-    // A 'require' block do not allow to be endded.
+    // A 'require' block do not allow to be ended.
     // You need to return or throw an exception inside.
     val percent = value.requireLeft { it: Right<ErrCode> ->
         // Here we return the upper function early, 
@@ -79,42 +79,52 @@ when (val result = doSomething(transformed)) {
     is Left -> println("Current progress ${result.left}")
     is Right -> println("Invalid value. Reason ${result.right}")
 }
+```
+
+The `Either` class is serializable with [kotlinx-serialization](https://github.com/Kotlin/kotlinx.serialization).
+
+It adds a depth level to your serialization with `left` or `right` value.
 
 ```
+Left("value")  <=> { "left": "value" }
+Right("value") <=> { "right": "value" }
+```
+
+You will get a deserialization exception if both `left` and `right` are together. 
 
 ### Option
 
 ```kotlin
 val data: Option<String?> = getDataFromSomewhere()
-val result: Option<Int?> = data.letValue { it?.toIntOrNull() }
+val result: Option<Int?> = data.letSome { it?.toIntOrNull() }
 when (result) {
-    is Value -> println("Success, result: ${result.value ?: "'no value'"}.")
-    Empty -> println("Nothing was found.")
+    is Some -> println("Success, result: ${result.value ?: "'no value'"}.")
+    None -> println("Nothing was found.")
 }
 ```
 
-The option class is serializable with [kotlinx-serialization](https://github.com/Kotlin/kotlinx.serialization).
+The `Option` class is also serializable with [kotlinx-serialization](https://github.com/Kotlin/kotlinx.serialization).
 
 Make sure to not encode defaults in your encoder. Like in Json with `{ encodeDefaults = false }`. Then, when defining a
-data class, initialize fields to `Empty`:
+data class, initialize fields to `None`:
 
 ```kotlin
 @Serializable
-data class Data(val value: Option<String?> = Empty)
+data class Data(val value: Option<String?> = None)
 ```
 
-Doing it this way allows the deserializer to fall back to `Empty` when the field is not present inside a json object.
-If the field is present and null, it deserializes to `Value(null)`.
+Doing it this way allows the deserializer to fall back to `None` when the field is not present inside a json object.
+If the field is present and null, it deserializes to `Some(null)`.
 Given the example above:
 
 ```
 JSON                 <=> Kotlin
-{ }                  <=> Data(Empty) 
-{ "value": null }    <=> Data(Value(null)) 
-{ "value": "value" } <=> Data(Value("value"))
+{ }                  <=> Data(None) 
+{ "value": null }    <=> Data(Some(null)) 
+{ "value": "value" } <=> Data(Some("value"))
 ```
 
-You can see the [test here](src/commonTest/kotlin/net/orandja/test/OptionJson.kt). 
+You can see the [test here](src/commonTest/kotlin/net/orandja/test/OptionJson.kt).
 
 # Api
 
@@ -122,8 +132,8 @@ You can see the [test here](src/commonTest/kotlin/net/orandja/test/OptionJson.kt
 
 ```kotlin
 var option: Option<String>
-option = Value("value")
-option = Empty
+option = Some("value")
+option = None
 
 var either: Either<String, Int>
 either = Left("value")
@@ -162,15 +172,15 @@ assertTrue { j == 0 }
 
 [//]: # (@formatter:off)
 ```kotlin
-val option: Option<String> = Value("value")
+val option: Option<String> = Some("value")
 
 val a: String  = option.value       // Might throw an Exception
 val b: String? = option.valueOrNull
 
-val c: Option<Unit> = option.letValue { str: String -> Unit } // Transform value type
+val c: Option<Unit> = option.letSome { str: String -> Unit } // Transform value type
 
-val d: String = option.foldEmpty { "new" }                  // Create value type on Empty
-val e: Unit   = option.foldBoth(onEmpty = {}, onValue = {}) // Transform bot
+val d: String = option.foldNone { "new" }                  // Create value type on None
+val e: Unit   = option.foldBoth(onNone = {}, onSome = {}) // Transform bot
 assertTrue { d == "value" }
 ```
 [//]: # (@formatter:on)
@@ -180,7 +190,7 @@ assertTrue { d == "value" }
 ```kotlin
 val left = Left("value")
 val right = Right(1234)
-val value = Value(Any())
+val value = Some(Any())
 
 val (l: String) = left
 val (r: Int) = right
@@ -195,21 +205,23 @@ val either: Either<String, Int> = Left("value")
 val a: Option<String> = either.leftAsOption()
 val b: Option<Int> = either.rightAsOption()
 
-assert(a is Value<String>)
-assert(b is Empty)
+assert(a is Some<String>)
+assert(b is None)
 ```
 
 ### Option to Either
 
 ```kotlin
-val option: Option<String> = Value("value")
+val option: Option<String> = Some("value")
 
-val a: Either<String, Int> = option.letEmptyAsRight { 0 }
-val b: Either<Int, String> = option.letEmptyAsLeft { 0 }
+val a: Either<String, Int> = option.letNoneAsRight { 0 }
+val b: Either<Int, String> = option.letNoneAsLeft { 0 }
 
-val c: Either<Long, Unit> = option.letAsLeft(onValue = { 0L }, onEmpty = {})
-val d: Either<Unit, Long> = option.letAsRight(onValue = { 0L }, onEmpty = {})
+val c: Either<Long, Unit> = option.letAsLeft(onSome = { 0L }, onNone = {})
+val d: Either<Unit, Long> = option.letAsRight(onSome = { 0L }, onNone = {})
 ```
+
+If you know the type of the Option, just create a left or right value with it. `val either = Left(option.value)`
 
 ## Requiring values
 
@@ -232,10 +244,10 @@ val d: Int = either.requireRight { (value: String) -> error("Will fail") }
 #### Option
 
 ```kotlin
-val option: Option<String> = Value("value")
+val option: Option<String> = Some("value")
 
-val a: String = option.requireValue { error("Will not fail") }
+val a: String = option.requireSome { error("Will not fail") }
 
-option.requireEmpty { opt: Option<String> -> error("Will fail") }
-option.requireEmpty { (value: String) -> error("Will fail") }
+option.requireNone { opt: Option<String> -> error("Will fail") }
+option.requireNone { (value: String) -> error("Will fail") }
 ```

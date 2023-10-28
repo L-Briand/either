@@ -1,8 +1,11 @@
 package net.orandja.either
 
+import kotlinx.serialization.Serializable
+
 /**
  * Base implementation. Can either be [Left] or [Right].
  */
+@Serializable(EitherSerializer::class)
 sealed class Either<out L, out R> {
     /** Underlying value on the [Left] implementation */
     abstract val left: L
@@ -18,15 +21,15 @@ sealed class Either<out L, out R> {
 
     /**
      * @return Depending on `this` kind:
-     *  - on [Left]: Option [Value] of the [left] value
-     *  - on [Right]: [Empty]
+     *  - on [Left]: Option [Some] of the [left] value
+     *  - on [Right]: [None]
      */
     abstract fun leftAsOption(): Option<L>
 
     /**
      * @return Depending on `this` kind:
-     *  - on [Left]: [Empty]
-     *  - on [Right]: Option [Value] of the [right] value
+     *  - on [Left]: [None]
+     *  - on [Right]: Option [Some] of the [right] value
      */
     abstract fun rightAsOption(): Option<R>
 

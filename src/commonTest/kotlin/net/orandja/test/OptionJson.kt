@@ -4,35 +4,37 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import net.orandja.either.Empty
+import net.orandja.either.None
 import net.orandja.either.Option
-import net.orandja.either.Value
+import net.orandja.either.Some
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class OptionJson {
     @Serializable
-    data class Data(val value: Option<String?> = Empty)
+    data class Data(val value: Option<String?> = None)
 
-    val codec = Json { encodeDefaults = false }
+    private val codec = Json { encodeDefaults = false }
+
+    private val noneData = Data(None)
+    private val nullData = Data(Some(null))
+    private val someData = Data(Some("value"))
+
+    private val noneJson = """{}"""
+    private val nullJson = """{"value":null}"""
+    private val someJson = """{"value":"value"}"""
 
     @Test
     fun serialization() {
-        val empty = codec.encodeToString(Data(Empty))
-        val nullV = codec.encodeToString(Data(Value(null)))
-        val value = codec.encodeToString(Data(Value("value")))
-        assertEquals(empty, "{}")
-        assertEquals(nullV, "{\"value\":null}")
-        assertEquals(value, "{\"value\":\"value\"}")
+        assertEquals(noneJson, codec.encodeToString(noneData))
+        assertEquals(nullJson, codec.encodeToString(nullData))
+        assertEquals(someJson, codec.encodeToString(someData))
     }
 
     @Test
     fun deserialization() {
-        val empty = codec.decodeFromString<Data>("{}")
-        val nullV = codec.decodeFromString<Data>("{\"value\":null}")
-        val value = codec.decodeFromString<Data>("{\"value\":\"value\"}")
-        assertEquals(empty, Data(Empty))
-        assertEquals(nullV, Data(Value(null)))
-        assertEquals(value, Data(Value("value")))
+        assertEquals(noneData, codec.decodeFromString(noneJson))
+        assertEquals(nullData, codec.decodeFromString(nullJson))
+        assertEquals(someData, codec.decodeFromString(someJson))
     }
 }
