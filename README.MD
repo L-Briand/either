@@ -114,6 +114,8 @@ JSON                 <=> Kotlin
 { "value": "value" } <=> Data(Value("value"))
 ```
 
+You can see the [test here](src/commonTest/kotlin/net/orandja/test/OptionJson.kt). 
+
 # Api
 
 ## Create
