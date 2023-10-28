@@ -137,7 +137,7 @@ inline fun <T> Option<T>.requireValue(
 inline fun <T> Option<T>.requireEmpty(
     block: (Value<T>) -> Nothing,
 ) {
-    if(this is Value) block(this)
+    if (this is Value) block(this)
 }
 
 /**

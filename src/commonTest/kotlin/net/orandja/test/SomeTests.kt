@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
     "UNUSED_VARIABLE", "UNUSED_DESTRUCTURED_PARAMETER_ENTRY", "UNUSED_ANONYMOUS_PARAMETER", "UNUSED_VALUE",
     "RedundantUnitExpression", "unused", "ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE"
 )
-class ApiReadme {
+class SomeTests {
     @Test
     fun creation() {
         var option: Option<String>
