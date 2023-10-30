@@ -73,7 +73,7 @@ inline fun <L, R> Either<L, R>.alsoRight(
  * - [Right]: Calls the specified function [onRight] with [Either.right].
  * @return `this`.
  */
-inline fun <L, R> Either<L, R>.also(
+inline fun <L, R> Either<L, R>.alsoBoth(
     onLeft: (L) -> Unit,
     onRight: (R) -> Unit,
 ): Either<L, R> {

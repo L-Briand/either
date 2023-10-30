@@ -43,7 +43,7 @@ inline fun <T> Option<T>.alsoNone(
  * - [Some]: Calls the specified function [onSome] with [Some.value].
  * @return `this`.
  */
-inline fun <T> Option<T>.also(
+inline fun <T> Option<T>.alsoBoth(
     onNone: () -> Unit,
     onSome: (T) -> Unit,
 ): Option<T> {
@@ -92,11 +92,6 @@ inline fun <T, L, R> Option<T>.letAsRight(
     None -> Left(onNone())
     is Some -> Right(onSome(this.value))
 }
-
-/**
- * Depending on `this` Kind:
- * - [None]:
- */
 
 /**
  * Depending on `this` kind:
