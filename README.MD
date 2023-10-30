@@ -25,7 +25,7 @@ repositories {
 }
 val commonMain by getting {
     dependencies {
-        implementation("net.orandja.kt:either:1.1.0")
+        implementation("net.orandja.kt:either:1.1.1")
     }
 }
 ```
@@ -37,7 +37,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("net.orandja.kt:either:1.1.0")
+    implementation("net.orandja.kt:either:1.1.1")
 }
 ```
 
@@ -90,7 +90,7 @@ Left("value")  <=> { "left": "value" }
 Right("value") <=> { "right": "value" }
 ```
 
-You will get a deserialization exception if both `left` and `right` are together. 
+You will get a deserialization exception if both `left` and `right` are together.
 
 ### Option
 
@@ -140,6 +140,21 @@ either = Left("value")
 either = Right(1234)
 ```
 
+## Side execution
+
+```kotlin
+val option: Option<String>
+val either: Either<String, Int>
+
+val _: Option<String> = option.alsoNone {}
+val _: Option<String> = option.alsoSome { str: String -> }
+val _: Option<String> = option.alsoBoth(onNone = { }, onSome = { str -> })
+
+val _: Either<String, Int> = either.alsoLeft { str: String -> }
+val _: Either<String, Int> = either.alsoRight { int: Int -> }
+val _: Either<String, Int> = either.alsoBoth(onLeft = { str -> }, onRight = { int -> })
+```
+
 ## Transform
 
 ### Either
@@ -148,23 +163,23 @@ either = Right(1234)
 ```kotlin
 val either: Either<String, Int> = Left("value")
 
-val b: String  = either.left  // Might throw an Exception
-val c: Int     = either.right // Might throw an Exception
-val d: String? = either.leftOrNull
-val e: Int?    = either.rightOrNull
+val _: String  = either.left  // Might throw an Exception
+val _: Int     = either.right // Might throw an Exception
+val _: String? = either.leftOrNull
+val _: Int?    = either.rightOrNull
 
-val a: Either<Int, String>  = either.invert() // invert types
+val _: Either<Int, String>  = either.invert() // invert types
 
-val f: Either<Unit, Int>    = either.letLeft { str: String -> Unit }    // Transform left type
-val g: Either<String, Unit> = either.letRight { int: Int -> Unit }      // Transform right type
-val h: Either<Unit, Unit>   = either.letBoth(onLeft = {}, onRight = {}) // Transform both types
+val _: Either<Unit, Int>    = either.letLeft { str: String -> Unit }    // Transform left type
+val _: Either<String, Unit> = either.letRight { int: Int -> Unit }      // Transform right type
+val _: Either<Unit, Unit>   = either.letBoth(onLeft = {}, onRight = {}) // Transform both types
 
-val i: String = either.foldRight { int: Int -> "new" }     // Transform right value to left type
-val j: Int    = either.foldLeft { str: String -> 0 }       // Transform left value to right type
-val k: Unit   = either.foldBoth(onLeft = {}, onRight = {}) // Transform both left and right value to same type
+val a: String = either.foldRight { int: Int -> "new" }     // Transform right value to left type
+val b: Int    = either.foldLeft { str: String -> 0 }       // Transform left value to right type
+val _: Unit   = either.foldBoth(onLeft = {}, onRight = {}) // Transform both left and right value to same type
 
-assertTrue { i == "value" }
-assertTrue { j == 0 }
+assertTrue { a == "value" }
+assertTrue { b == 0 }
 ```
 [//]: # (@formatter:on)
 
@@ -174,14 +189,14 @@ assertTrue { j == 0 }
 ```kotlin
 val option: Option<String> = Some("value")
 
-val a: String  = option.value       // Might throw an Exception
-val b: String? = option.valueOrNull
+val _: String  = option.value       // Might throw an Exception
+val _: String? = option.valueOrNull
 
-val c: Option<Unit> = option.letSome { str: String -> Unit } // Transform value type
+val _: Option<Unit> = option.letSome { str: String -> Unit } // Transform value type
 
-val d: String = option.foldNone { "new" }                  // Create value type on None
-val e: Unit   = option.foldBoth(onNone = {}, onSome = {}) // Transform bot
-assertTrue { d == "value" }
+val a: String = option.foldNone { "new" }                  // Create value type on None
+val _: Unit   = option.foldBoth(onNone = {}, onSome = {}) // Transform bot
+assertTrue { a == "value" }
 ```
 [//]: # (@formatter:on)
 
@@ -225,6 +240,10 @@ If you know the type of the Option, just create a left or right value with it. `
 
 ## Requiring values
 
+There are no operators like `either.withLeft { }` or `option.withValue { }` as it implies some sort of error
+handling if the type is wrong. Instead, the lib provides the inverted thinking, handles the error case and
+continues.
+
 In a `require` block you either need to return or throw an exception.
 You cannot let the code go at the end of the block. Use destructuring syntax to handle `Either` / `Option` values
 directly.
@@ -234,20 +253,22 @@ directly.
 ```kotlin
 val either: Either<String, Int> = Left("value")
 
-val a: String = either.requireLeft { value: Right<Int> -> error("Will not fail") }
-val b: String = either.requireLeft { (value: Int) -> error("Will not fail") }
+val _: String = either.requireLeft { value: Right<Int> -> error("Will not fail") }
+val _: Int = either.requireRight { value: Left<String> -> error("Will fail") }
 
-val c: Int = either.requireRight { value: Left<String> -> error("Will fail") }
-val d: Int = either.requireRight { (value: String) -> error("Will fail") }
+fun test() {
+    val _: String = either.requireLeft { (value: Int) -> return }
+    val _: Int = either.requireRight { (value: String) -> return }
+}
 ```
 
 #### Option
 
 ```kotlin
-val option: Option<String> = Some("value")
+val option: Option<String> = None
 
-val a: String = option.requireSome { error("Will not fail") }
+option.requireNone { opt: Option<String> -> error("Will not fail") }
+option.requireNone { (value: String) -> error("Will not fail") }
 
-option.requireNone { opt: Option<String> -> error("Will fail") }
-option.requireNone { (value: String) -> error("Will fail") }
+val _: String = option.requireSome { error("Will fail") }
 ```
