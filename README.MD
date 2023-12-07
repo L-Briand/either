@@ -87,7 +87,7 @@ It adds a depth level to your serialization with `left` or `right` value.
 
 ```
 Left("value")  <=> { "left": "value" }
-Right("value") <=> { "right": "value" }
+Right(12345)   <=> { "right": 12345 }
 ```
 
 You will get a deserialization exception if both `left` and `right` are together.
@@ -244,9 +244,10 @@ There are no operators like `either.withLeft { }` or `option.withValue { }` as i
 handling if the type is wrong. Instead, the lib provides the inverted thinking, handles the error case and
 continues.
 
-In a `require` block you either need to return or throw an exception.
-You cannot let the code go at the end of the block. Use destructuring syntax to handle `Either` / `Option` values
-directly.
+In a `require` block you are requiring to **return** or **throw** an exception.
+You cannot let the code go at the end of the block.
+
+You can use destructuring syntax to handle `Either` / `Option` values directly.
 
 #### Either
 
@@ -257,8 +258,8 @@ val _: String = either.requireLeft { value: Right<Int> -> error("Will not fail")
 val _: Int = either.requireRight { value: Left<String> -> error("Will fail") }
 
 fun test() {
-    val _: String = either.requireLeft { (value: Int) -> return }
-    val _: Int = either.requireRight { (value: String) -> return }
+    val _: String = either.requireLeft { (value: Int) -> return@test }
+    val _: Int = either.requireRight { (value: String) -> return@test }
 }
 ```
 

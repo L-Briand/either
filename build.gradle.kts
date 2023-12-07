@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+
 plugins {
-    kotlin("multiplatform") version "1.9.0"
-    kotlin("plugin.serialization") version "1.9.0"
+    kotlin("multiplatform") version "1.9.21"
+    kotlin("plugin.serialization") version "1.9.21"
     id("maven-publish")
     id("signing")
 }
@@ -24,28 +26,63 @@ repositories {
 
 kotlin {
     jvm {
+        compilations.getByName("main") {
+            kotlinOptions { jvmTarget = "1.8" }
+        }
         jvmToolchain(8)
         withJava()
+        withSourcesJar(true)
         testRuns.named("test") {
             executionTask.configure { useJUnitPlatform() }
         }
     }
 
-    js("js") {
+    // web
+
+    js {
         browser()
         nodejs()
     }
 
-    macosArm64("macosArm64")
-    macosX64("macosX64")
-    linuxArm64("linuxArm64")
-    linuxX64("linuxX64")
-    mingwX64("mingwX64")
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs { d8() }
+    // wasmWasi { nodejs() }
+
+    // https://kotlinlang.org/docs/native-target-support.html
+
+    // Tier1
+
+    macosX64()
+    macosArm64()
+    iosSimulatorArm64()
+    iosX64()
+
+    // Tier2
+
+    linuxX64()
+    linuxArm64()
+    watchosSimulatorArm64()
+    watchosX64()
+    watchosArm32()
+    watchosArm64()
+    tvosSimulatorArm64()
+    tvosX64()
+    tvosArm64()
+    iosArm64()
+
+    // Tier3
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX86()
+    androidNativeX64()
+    mingwX64()
+    watchosDeviceArm64()
 
     sourceSets {
         getByName("commonMain") {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+                val serialization = findProperty("version.serialization") !!
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization")
             }
         }
         getByName("commonTest") {
