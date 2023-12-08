@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>net.orandja.either</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../index.html">
+                            either
+                    </a>
+            </div>
+            <div class="library-version">
+1.2.0            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":dokkaHtml/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="either::net.orandja.either////PointingToDeclaration//788909594">
+  <div class="breadcrumbs"><a href="../../index.html">either</a><span class="delimiter">/</span><span class="current">net.orandja.either</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="23319062%2FClasslikes%2F788909594" anchor-label="Either" id="23319062%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-either/index.html"><span><span>Either</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="23319062%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-either-serializer/index.html">EitherSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-either/index.html">L</a><span class="token punctuation">, </span><span class="token keyword">out </span><a href="-either/index.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Base implementation. Can either be <a href="-left/index.html">Left</a> or <a href="-right/index.html">Right</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2039115164%2FClasslikes%2F788909594" anchor-label="EitherSerializer" id="-2039115164%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-either-serializer/index.html"><span>Either</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2039115164%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-either-serializer/index.html">EitherSerializer</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-either-serializer/index.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-either-serializer/index.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">leftDelegate<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-either-serializer/index.html">L</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">rightDelegate<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-either-serializer/index.html">R</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-either-serializer/index.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-either-serializer/index.html">R</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Serializer for both Left and Right implementation of the Either class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1361599596%2FClasslikes%2F788909594" anchor-label="Left" id="-1361599596%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-left/index.html"><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1361599596%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-left-serializer/index.html">LeftSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-left/index.html">Left</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-left/index.html">L</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>left<span class="token operator">: </span><a href="-left/index.html">L</a></span></span><span class="token punctuation">)</span> : <a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-left/index.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Left implementation of <a href="-either/index.html">Either</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1051205218%2FClasslikes%2F788909594" anchor-label="LeftSerializer" id="1051205218%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-left-serializer/index.html"><span>Left</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1051205218%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-left-serializer/index.html">LeftSerializer</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-left-serializer/index.html">L</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">delegate<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-left-serializer/index.html">L</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-left/index.html">Left</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-left-serializer/index.html">L</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Serializer for the Left implementation of the Either class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="409886083%2FClasslikes%2F788909594" anchor-label="None" id="409886083%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-none/index.html"><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="409886083%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-none/index.html">None</a> : <a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Implementation of none <a href="-option/index.html">Option</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-37046170%2FClasslikes%2F788909594" anchor-label="Option" id="-37046170%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-option/index.html"><span><span>Option</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-37046170%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-option-serializer/index.html">OptionSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-option/index.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Base implementation. Can either be <a href="-some/index.html">Some</a> or <a href="-none/index.html">None</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1150495564%2FClasslikes%2F788909594" anchor-label="OptionSerializer" id="-1150495564%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-option-serializer/index.html"><span>Option</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1150495564%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-option-serializer/index.html">OptionSerializer</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-option-serializer/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">delegate<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-option-serializer/index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-option-serializer/index.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">This serializer is used to encode/decode options with field presence inside JSON.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="326120779%2FClasslikes%2F788909594" anchor-label="Right" id="326120779%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-right/index.html"><span><span>Right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="326120779%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-right-serializer/index.html">RightSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-right/index.html">Right</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-right/index.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>right<span class="token operator">: </span><a href="-right/index.html">R</a></span></span><span class="token punctuation">)</span> : <a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="-right/index.html">R</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Right implementation of <a href="-either/index.html">Either</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1107609767%2FClasslikes%2F788909594" anchor-label="RightSerializer" id="-1107609767%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-right-serializer/index.html"><span>Right</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1107609767%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-right-serializer/index.html">RightSerializer</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-right-serializer/index.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">delegate<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-right-serializer/index.html">R</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-right/index.html">Right</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-right-serializer/index.html">R</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Serializer for the Right implementation of the Either class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1381186745%2FClasslikes%2F788909594" anchor-label="Some" id="-1381186745%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-some/index.html"><span><span>Some</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1381186745%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-some-serializer/index.html">SomeSerializer::class</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-some/index.html">Some</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-some/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>value<span class="token operator">: </span><a href="-some/index.html">T</a></span></span><span class="token punctuation">)</span> : <a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-some/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Implementation of value <a href="-option/index.html">Option</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1154185813%2FClasslikes%2F788909594" anchor-label="SomeSerializer" id="1154185813%2FClasslikes%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-some-serializer/index.html"><span>Some</span><wbr></wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1154185813%2FClasslikes%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-some-serializer/index.html">SomeSerializer</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-some-serializer/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">delegate<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-some-serializer/index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-some/index.html">Some</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-some-serializer/index.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Default serializer for <a href="-some-serializer/index.html">SomeSerializer</a>. This serializer does not encapsulate the value into an object with value inside.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-408931339%2FFunctions%2F788909594" anchor-label="alsoBoth" id="-408931339%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="also-both.html"><span>also</span><wbr></wbr><span><span>Both</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-408931339%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-both.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-both.html">R</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-both.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-both.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="also-both.html"><span class="token function">alsoBoth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onLeft<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="also-both.html">L</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">, </span></span><span class="parameter ">onRight<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="also-both.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-both.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-both.html">R</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-both.html">T</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-both.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="also-both.html"><span class="token function">alsoBoth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onNone<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token punctuation">, </span></span><span class="parameter ">onSome<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="also-both.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-both.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> kind:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-588794713%2FFunctions%2F788909594" anchor-label="alsoLeft" id="-588794713%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="also-left.html"><span>also</span><wbr></wbr><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-588794713%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-left.html">R</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-left.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="also-left.html"><span class="token function">alsoLeft</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="also-left.html">L</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-left.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">On a <a href="-left/index.html">Left</a> Either, calls the specified function <a href="also-left.html">block</a> with <a href="-either/left.html">Either.left</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-483152937%2FFunctions%2F788909594" anchor-label="alsoNone" id="-483152937%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="also-none.html"><span>also</span><wbr></wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-483152937%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-none.html">T</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-none.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="also-none.html"><span class="token function">alsoNone</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-none.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">On a <a href="-none/index.html">None</a> Option, calls the specified function <a href="also-none.html">block</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1264772156%2FFunctions%2F788909594" anchor-label="alsoRight" id="1264772156%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="also-right.html"><span>also</span><wbr></wbr><span><span>Right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1264772156%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-right.html">R</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-right.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="also-right.html"><span class="token function">alsoRight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="also-right.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="also-right.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">On a <a href="-right/index.html">Right</a> Either, calls the specified function <a href="also-right.html">block</a> with <a href="-either/right.html">Either.right</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="601765676%2FFunctions%2F788909594" anchor-label="alsoSome" id="601765676%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="also-some.html"><span>also</span><wbr></wbr><span><span>Some</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="601765676%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-some.html">T</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-some.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="also-some.html"><span class="token function">alsoSome</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="also-some.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="also-some.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">On a <a href="-some/index.html">Some</a> Option, calls the specified function <a href="also-some.html">block</a> with <a href="-some/value.html">Some.value</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1631359733%2FFunctions%2F788909594" anchor-label="foldBoth" id="1631359733%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fold-both.html"><span>fold</span><wbr></wbr><span><span>Both</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1631359733%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-both.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-both.html">R</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-both.html">NewType</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-both.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-both.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="fold-both.html"><span class="token function">foldBoth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onLeft<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="fold-both.html">L</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-both.html">NewType</a><span class="token punctuation">, </span></span><span class="parameter ">onRight<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="fold-both.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-both.html">NewType</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="fold-both.html">NewType</a></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> Kind:</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-both.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-both.html">O</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-both.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="fold-both.html"><span class="token function">foldBoth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onSome<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="fold-both.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-both.html">O</a><span class="token punctuation">, </span></span><span class="parameter ">onNone<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-both.html">O</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="fold-both.html">O</a></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> kind:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1627094580%2FFunctions%2F788909594" anchor-label="foldLeft" id="1627094580%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fold-left.html"><span>fold</span><wbr></wbr><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1627094580%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-left.html">R</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-left.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="fold-left.html"><span class="token function">foldLeft</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="fold-left.html">L</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-left.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="fold-left.html">R</a></div><div class="brief "><p class="paragraph">On a <a href="-left/index.html">Left</a> Either, calls the specified function <a href="fold-left.html">block</a> to transform <a href="-either/left.html">Either.left</a> into <a href="-either/right.html">Either.right</a> type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1046295196%2FFunctions%2F788909594" anchor-label="foldNone" id="-1046295196%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fold-none.html"><span>fold</span><wbr></wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1046295196%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-none.html">T</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-none.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="fold-none.html"><span class="token function">foldNone</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-none.html">T</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="fold-none.html">T</a></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> kind:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1755132907%2FFunctions%2F788909594" anchor-label="foldRight" id="-1755132907%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fold-right.html"><span>fold</span><wbr></wbr><span><span>Right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1755132907%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-right.html">R</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-right.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="fold-right.html"><span class="token function">foldRight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="fold-right.html">R</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-right.html">L</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="fold-right.html">L</a></div><div class="brief "><p class="paragraph">On a <a href="-right/index.html">Right</a> Either, calls the specified function <a href="fold-right.html">block</a> to transform <a href="-either/right.html">Either.right</a> into <a href="-either/left.html">Either.left</a> type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="773867872%2FFunctions%2F788909594" anchor-label="letAsLeft" id="773867872%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="let-as-left.html"><span>let</span><wbr></wbr><span>As</span><wbr></wbr><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="773867872%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-as-left.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-as-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-as-left.html">R</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-as-left.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="let-as-left.html"><span class="token function">letAsLeft</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onSome<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="let-as-left.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-as-left.html">L</a><span class="token punctuation">, </span></span><span class="parameter ">onNone<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-as-left.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-as-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-as-left.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> Kind:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-771892915%2FFunctions%2F788909594" anchor-label="letAsRight" id="-771892915%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="let-as-right.html"><span>let</span><wbr></wbr><span>As</span><wbr></wbr><span><span>Right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-771892915%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-as-right.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-as-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-as-right.html">R</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-as-right.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="let-as-right.html"><span class="token function">letAsRight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onNone<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-as-right.html">L</a><span class="token punctuation">, </span></span><span class="parameter ">onSome<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="let-as-right.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-as-right.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-as-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-as-right.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> Kind:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1494126985%2FFunctions%2F788909594" anchor-label="letBoth" id="1494126985%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="let-both.html"><span>let</span><wbr></wbr><span><span>Both</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1494126985%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-both.html">OldL</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-both.html">OldR</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-both.html">NewL</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-both.html">NewR</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-both.html">OldL</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-both.html">OldR</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="let-both.html"><span class="token function">letBoth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">onLeft<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="let-both.html">OldL</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-both.html">NewL</a><span class="token punctuation">, </span></span><span class="parameter ">onRight<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="let-both.html">OldR</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-both.html">NewR</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-both.html">NewL</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-both.html">NewR</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> kind:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-61206404%2FFunctions%2F788909594" anchor-label="letLeft" id="-61206404%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="let-left.html"><span>let</span><wbr></wbr><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-61206404%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-left.html">OldL</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-left.html">NewL</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-left.html">R</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-left.html">OldL</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-left.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="let-left.html"><span class="token function">letLeft</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="let-left.html">OldL</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-left.html">NewL</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-left.html">NewL</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-left.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">On a <a href="-left/index.html">Left</a> Either, calls the specified function <a href="let-left.html">block</a> to transform <a href="-either/left.html">Either.left</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="389770021%2FFunctions%2F788909594" anchor-label="letNoneAsLeft" id="389770021%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="let-none-as-left.html"><span>let</span><wbr></wbr><span>None</span><wbr></wbr><span>As</span><wbr></wbr><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="389770021%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-none-as-left.html">R</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-none-as-left.html">L</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-none-as-left.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="let-none-as-left.html"><span class="token function">letNoneAsLeft</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-none-as-left.html">L</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-none-as-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-none-as-left.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> kind:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1827968610%2FFunctions%2F788909594" anchor-label="letNoneAsRight" id="1827968610%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="let-none-as-right.html"><span>let</span><wbr></wbr><span>None</span><wbr></wbr><span>As</span><wbr></wbr><span><span>Right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1827968610%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-none-as-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-none-as-right.html">R</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-none-as-right.html">L</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="let-none-as-right.html"><span class="token function">letNoneAsRight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-none-as-right.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-none-as-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-none-as-right.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Depending on <code class="lang-kotlin">this</code> kind:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1742111437%2FFunctions%2F788909594" anchor-label="letRight" id="1742111437%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="let-right.html"><span>let</span><wbr></wbr><span><span>Right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1742111437%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-right.html">OldR</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-right.html">NewR</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-right.html">OldR</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="let-right.html"><span class="token function">letRight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="let-right.html">OldR</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-right.html">NewR</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-right.html">NewR</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">On a <a href="-right/index.html">Right</a> Either, calls the specified function <a href="let-right.html">block</a> to transform <a href="-either/right.html">Either.right</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-446323071%2FFunctions%2F788909594" anchor-label="letSome" id="-446323071%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="let-some.html"><span>let</span><wbr></wbr><span><span>Some</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-446323071%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-some.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="let-some.html">R</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-some.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="let-some.html"><span class="token function">letSome</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="let-some.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="let-some.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="let-some.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">On a <a href="-some/index.html">Some</a> Option, calls the specified function <a href="let-some.html">block</a> to transform <a href="-some/value.html">Some.value</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1438691709%2FFunctions%2F788909594" anchor-label="requireLeft" id="1438691709%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="require-left.html"><span>require</span><wbr></wbr><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1438691709%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="require-left.html">R</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-left.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="require-left.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="require-left.html"><span class="token function">requireLeft</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="-right/index.html">Right</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-left.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="require-left.html">L</a></div><div class="brief "><p class="paragraph">Try to get <a href="-either/left.html">Either.left</a> or calls <a href="require-left.html">block</a> to return or stops the current execution block.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-40267692%2FFunctions%2F788909594" anchor-label="requireNone" id="-40267692%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="require-none.html"><span>require</span><wbr></wbr><span><span>None</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-40267692%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-none.html">T</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-none.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="require-none.html"><span class="token function">requireNone</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="-some/index.html">Some</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-none.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">If <code class="lang-kotlin">this</code> is <a href="-some/index.html">Some</a>, calls <a href="require-none.html">block</a> with <code class="lang-kotlin">this</code> to return or stops the current execution block.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-999334373%2FFunctions%2F788909594" anchor-label="requireRight" id="-999334373%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="require-right.html"><span>require</span><wbr></wbr><span><span>Right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-999334373%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="require-right.html">R</a><span class="token operator">&gt; </span><a href="-either/index.html">Either</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-right.html">L</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="require-right.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="require-right.html"><span class="token function">requireRight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span><a href="-left/index.html">Left</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-right.html">L</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="require-right.html">R</a></div><div class="brief "><p class="paragraph">Try to get <a href="-either/right.html">Either.right</a> or calls <a href="require-right.html">block</a> to return or stops the current execution block.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1432200902%2FFunctions%2F788909594" anchor-label="requireSome" id="-1432200902%2FFunctions%2F788909594" data-filterable-set=":dokkaHtml/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dokkaHtml/commonMain" data-filterable-set=":dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="require-some.html"><span>require</span><wbr></wbr><span><span>Some</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1432200902%2FFunctions%2F788909594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-some.html">T</a><span class="token operator">&gt; </span><a href="-option/index.html">Option</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="require-some.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="require-some.html"><span class="token function">requireSome</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="require-some.html">T</a></div><div class="brief "><p class="paragraph">Try to get <a href="-some/value.html">Some.value</a> or calls <a href="require-some.html">block</a> to return or stops the current execution block.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
