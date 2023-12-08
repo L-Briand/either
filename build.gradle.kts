@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 plugins {
     kotlin("multiplatform") version "1.9.21"
     kotlin("plugin.serialization") version "1.9.21"
+    id("org.jetbrains.dokka") version "1.9.10"
     id("maven-publish")
     id("signing")
 }
@@ -145,4 +146,14 @@ if (isSigningEnabled) {
     signing {
         sign(publishing.publications)
     }
+}
+
+tasks.create<Delete>("cleanupGithubDocumentation") {
+    delete(file("docs"))
+}
+tasks.create<Copy>("generateGithubDocumentation") {
+    dependsOn("cleanupGithubDocumentation")
+    dependsOn("dokkaHtml")
+    val buildDir = layout.buildDirectory
+    from(buildDir.dir("dokka/html")).into("docs")
 }
