@@ -1,7 +1,6 @@
 package net.orandja.test
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.orandja.either.None
@@ -25,14 +24,14 @@ class OptionJson {
     private val someJson = """{"value":"value"}"""
 
     @Test
-    fun serialization() {
+    fun serialize() {
         assertEquals(noneJson, codec.encodeToString(noneData))
         assertEquals(nullJson, codec.encodeToString(nullData))
         assertEquals(someJson, codec.encodeToString(someData))
     }
 
     @Test
-    fun deserialization() {
+    fun deserialize() {
         assertEquals(noneData, codec.decodeFromString(noneJson))
         assertEquals(nullData, codec.decodeFromString(nullJson))
         assertEquals(someData, codec.decodeFromString(someJson))

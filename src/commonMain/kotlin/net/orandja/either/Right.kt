@@ -16,9 +16,6 @@ data class Right<out R>(override val right: R) : Either<Nothing, R>() {
     companion object {
         /**
          * Static instance of [Right]'s Unit.
-         *
-         *
-         * Can be useful when result is [Right] without the need of a specific type. (Example: `Either<Failure, Unit>`)
          */
         @JvmStatic
         val Unit = Right(kotlin.Unit)

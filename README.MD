@@ -25,7 +25,7 @@ repositories {
 }
 val commonMain by getting {
     dependencies {
-        implementation("net.orandja.kt:either:1.1.1")
+        implementation("net.orandja.kt:either:1.2.0")
     }
 }
 ```
@@ -37,7 +37,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("net.orandja.kt:either:1.1.1")
+    implementation("net.orandja.kt:either:1.2.0")
 }
 ```
 
@@ -229,11 +229,11 @@ assert(b is None)
 ```kotlin
 val option: Option<String> = Some("value")
 
-val a: Either<String, Int> = option.letNoneAsRight { 0 }
-val b: Either<Int, String> = option.letNoneAsLeft { 0 }
+val _: Either<String, Int> = option.letNoneAsRight { 0 }
+val _: Either<Int, String> = option.letNoneAsLeft { 0 }
 
-val c: Either<Long, Unit> = option.letAsLeft(onSome = { 0L }, onNone = {})
-val d: Either<Unit, Long> = option.letAsRight(onSome = { 0L }, onNone = {})
+val _: Either<Long, Unit> = option.letAsLeft(onSome = { 0L }, onNone = {})
+val _: Either<Unit, Long> = option.letAsRight(onSome = { 0L }, onNone = {})
 ```
 
 If you know the type of the Option, just create a left or right value with it. `val either = Left(option.value)`

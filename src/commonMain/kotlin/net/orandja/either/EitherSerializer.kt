@@ -6,6 +6,14 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.*
 
+/**
+ * Serializer for both Left and Right implementation of the Either class.
+ *
+ * @param L the type of the value on the left side of [Either]
+ * @param R the type of the value on the right side of [Either]
+ * @property leftDelegate the serializer for the type [L]
+ * @property rightDelegate the serializer for the type [R]
+ */
 class EitherSerializer<L, R>(
     private val leftDelegate: KSerializer<L>,
     private val rightDelegate: KSerializer<R>,

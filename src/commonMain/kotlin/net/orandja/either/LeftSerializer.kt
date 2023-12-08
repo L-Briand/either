@@ -6,6 +6,14 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.*
 
+/**
+ * Serializer for the Left implementation of the Either class.
+ *
+ * This serializer is responsible for serializing and deserializing values of type Left<L>.
+ *
+ * @param L the type parameter of the Left class
+ * @property delegate the serializer for values of type L
+ */
 class LeftSerializer<L>(
     private val delegate: KSerializer<L>,
 ) : KSerializer<Left<L>> {

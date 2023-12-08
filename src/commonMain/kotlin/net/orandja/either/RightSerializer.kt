@@ -7,6 +7,14 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.*
 
+/**
+ * Serializer for the Right implementation of the Either class.
+ *
+ * This serializer is responsible for serializing and deserializing values of type Right<R>.
+ *
+ * @param R the type parameter of the Right class
+ * @property delegate the serializer for values of type R
+ */
 class RightSerializer<R>(
     private val delegate: KSerializer<R>,
 ) : KSerializer<Right<R>> {

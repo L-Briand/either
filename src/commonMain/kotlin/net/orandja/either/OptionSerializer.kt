@@ -18,7 +18,6 @@ import kotlinx.serialization.encoding.Encoder
  *
  * Doing it this way allows the deserializer fallback to none when the field is not present inside a json object.
  * If the field is present and null, it deserializes to Some(null)
- *
  */
 class OptionSerializer<T>(private val delegate: KSerializer<T>) : KSerializer<Option<T>> {
     override val descriptor: SerialDescriptor = delegate.descriptor

@@ -1,6 +1,5 @@
 package net.orandja.test
 
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.orandja.either.Either
@@ -30,7 +29,7 @@ class EitherJson {
     }
 
     @Test
-    fun deserializationLeft() {
+    fun deserialize() {
         assertEquals(lData, codec.decodeFromString(lJson))
         assertEquals(leData, codec.decodeFromString(lJson))
         assertEquals(rData, codec.decodeFromString(rJson))
