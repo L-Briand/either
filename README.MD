@@ -43,6 +43,8 @@ dependencies {
 
 ## Usage
 
+[dokka documentation here](https://l-briand.github.io/either/either/net.orandja.either/index.html)
+
 ### Either
 
 This example is a bit convoluted, but it explains pretty well how to use `Either`.
