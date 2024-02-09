@@ -1,6 +1,9 @@
 package net.orandja.either
 
 import kotlinx.serialization.Serializable
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 /**
  * Base implementation. Can either be [Left] or [Right].
@@ -48,9 +51,13 @@ sealed class Either<out L, out R> {
  * On a [Left] Either, calls the specified function [block] with [Either.left]
  * @return `this`
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R> Either<L, R>.alsoLeft(
     block: (L) -> Unit,
 ): Either<L, R> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
     if (this is Left) block(left)
     return this
 }
@@ -60,9 +67,13 @@ inline fun <L, R> Either<L, R>.alsoLeft(
  * On a [Right] Either, calls the specified function [block] with [Either.right].
  * @return `this`
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R> Either<L, R>.alsoRight(
     block: (R) -> Unit,
 ): Either<L, R> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
     if (this is Right) block(right)
     return this
 }
@@ -73,10 +84,15 @@ inline fun <L, R> Either<L, R>.alsoRight(
  * - [Right]: Calls the specified function [onRight] with [Either.right].
  * @return `this`.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R> Either<L, R>.alsoBoth(
     onLeft: (L) -> Unit,
     onRight: (R) -> Unit,
 ): Either<L, R> {
+    contract {
+        callsInPlace(onLeft, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(onRight, InvocationKind.AT_MOST_ONCE)
+    }
     when (this) {
         is Left -> onLeft(this.left)
         is Right -> onRight(this.right)
@@ -88,22 +104,34 @@ inline fun <L, R> Either<L, R>.alsoBoth(
  * On a [Left] Either, calls the specified function [block] to transform [Either.left].
  * @return New [Left] object with transformed [Either.left] value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <OldL, NewL, R> Either<OldL, R>.letLeft(
     block: (OldL) -> NewL,
-): Either<NewL, R> = when (this) {
-    is Left -> Left(block(left))
-    is Right -> this
+): Either<NewL, R> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Left -> Left(block(left))
+        is Right -> this
+    }
 }
 
 /**
  * On a [Right] Either, calls the specified function [block] to transform [Either.right].
  * @return New [Right] object with transformed [Either.right] value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, OldR, NewR> Either<L, OldR>.letRight(
     block: (OldR) -> NewR,
-): Either<L, NewR> = when (this) {
-    is Left -> this
-    is Right -> Right(block(right))
+): Either<L, NewR> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Left -> this
+        is Right -> Right(block(right))
+    }
 }
 
 /**
@@ -112,56 +140,89 @@ inline fun <L, OldR, NewR> Either<L, OldR>.letRight(
  * - [Right]: Calls the specified function [onRight] to transform [Either.right].
  * @return New Either object with transformed value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <OldL, OldR, NewL, NewR> Either<OldL, OldR>.letBoth(
     onLeft: (OldL) -> NewL,
     onRight: (OldR) -> NewR,
-): Either<NewL, NewR> = when (this) {
-    is Left -> Left(onLeft(this.left))
-    is Right -> Right(onRight(this.right))
+): Either<NewL, NewR> {
+    contract {
+        callsInPlace(onLeft, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(onRight, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Left -> Left(onLeft(this.left))
+        is Right -> Right(onRight(this.right))
+    }
 }
 
 /**
  * Try to get [Either.left] or calls [block] to return or stops the current execution block.
  * @return [Either.left] value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R> Either<L, R>.requireLeft(
     block: (Right<R>) -> Nothing,
-): L = when (this) {
-    is Left -> left
-    is Right -> block(this)
+): L {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+        returns() implies (this@requireLeft is Left)
+    }
+    return when (this) {
+        is Left -> left
+        is Right -> block(this)
+    }
 }
 
 /**
  * Try to get [Either.right] or calls [block] to return or stops the current execution block.
  * @return [Either.right] value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R> Either<L, R>.requireRight(
     block: (Left<L>) -> Nothing,
-): R = when (this) {
-    is Left -> block(this)
-    is Right -> right
+): R {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+        returns() implies (this@requireRight is Right)
+    }
+    return when (this) {
+        is Left -> block(this)
+        is Right -> right
+    }
 }
 
 /**
  * On a [Left] Either, calls the specified function [block] to transform [Either.left] into [Either.right] type.
  * @return Transformed [Either.left] or [Either.right] value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R> Either<L, R>.foldLeft(
     block: (L) -> R,
-): R = when (this) {
-    is Left -> block(this.left)
-    is Right -> this.right
+): R {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Left -> block(this.left)
+        is Right -> this.right
+    }
 }
 
 /**
  * On a [Right] Either, calls the specified function [block] to transform [Either.right] into [Either.left] type.
  * @return Transformed [Either.right] or [Either.left] value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R> Either<L, R>.foldRight(
     block: (R) -> L,
-): L = when (this) {
-    is Left -> this.left
-    is Right -> block(this.right)
+): L {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Left -> this.left
+        is Right -> block(this.right)
+    }
 }
 
 /**
@@ -170,10 +231,57 @@ inline fun <L, R> Either<L, R>.foldRight(
  * - [Right]: Calls the specified function [onRight] to transform [Either.right] into [NewType] objects.
  * @return Transformed value
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R, NewType> Either<L, R>.foldBoth(
     onLeft: (L) -> NewType,
     onRight: (R) -> NewType,
-): NewType = when (this) {
-    is Left -> onLeft(this.left)
-    is Right -> onRight(this.right)
+): NewType {
+    contract {
+        callsInPlace(onLeft, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(onRight, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Left -> onLeft(this.left)
+        is Right -> onRight(this.right)
+    }
+}
+
+/**
+ * Depending on `this` Kind:
+ * - [Left]: Call [block] to transform the current `Either` into another one with the same [R] value.
+ * - [Right]: Returns it.
+ *
+ * @return `Either` with a new Left type.
+ */
+@OptIn(ExperimentalContracts::class)
+inline infix fun <OldL, NewL, R> Either<OldL, R>.tryLeft(
+    block: (OldL) -> Either<NewL, R>,
+): Either<NewL, R> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Left -> block(left)
+        is Right -> this
+    }
+}
+
+/**
+ * Depending on `this` Kind:
+ * - [Left]: Returns it.
+ * - [Right]: Call [block] to transform the current `Either` into another one with the same [L] value.
+ *
+ * @return `Either` with a new Right type.
+ */
+@OptIn(ExperimentalContracts::class)
+inline infix fun <L, OldR, NewR> Either<L, OldR>.tryRight(
+    block: (OldR) -> Either<L, NewR>,
+): Either<L, NewR> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Left -> this
+        is Right -> block(right)
+    }
 }

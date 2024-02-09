@@ -10,13 +10,14 @@ import kotlin.jvm.JvmStatic
 data class Some<out T>(override val value: T) : Option<T>() {
     companion object {
 
-        /**
-         * Static instance of [Some]'s Unit.
-         *
-         * Can be useful when result is [Some] without the need of a specific type. (Example: `Some<Unit>`)
-         */
         @JvmStatic
         val Unit = Some(kotlin.Unit)
+
+        @JvmStatic
+        val True = Left(true)
+
+        @JvmStatic
+        val False = Left(false)
     }
 
     override fun toString(): String = "Some($value)"

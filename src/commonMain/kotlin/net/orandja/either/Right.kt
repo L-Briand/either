@@ -9,16 +9,21 @@ import kotlin.jvm.JvmStatic
 @Serializable(RightSerializer::class)
 data class Right<out R>(override val right: R) : Either<Nothing, R>() {
 
+    val value: R get() = left
+
     /** Exception raised while trying to access [right] value on [Left] class. */
     class AccessLeftOnRightException(value: Any?) :
         IllegalStateException("Cannot get `left` on Right($value)", value as? Throwable)
 
     companion object {
-        /**
-         * Static instance of [Right]'s Unit.
-         */
         @JvmStatic
         val Unit = Right(kotlin.Unit)
+
+        @JvmStatic
+        val True = Left(true)
+
+        @JvmStatic
+        val False = Left(false)
     }
 
     /**

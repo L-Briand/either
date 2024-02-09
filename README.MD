@@ -25,7 +25,7 @@ repositories {
 }
 val commonMain by getting {
     dependencies {
-        implementation("net.orandja.kt:either:1.2.0")
+        implementation("net.orandja.kt:either:1.2.1")
     }
 }
 ```
@@ -37,7 +37,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("net.orandja.kt:either:1.2.0")
+    implementation("net.orandja.kt:either:1.2.1")
 }
 ```
 
@@ -239,6 +239,37 @@ val _: Either<Unit, Long> = option.letAsRight(onSome = { 0L }, onNone = {})
 ```
 
 If you know the type of the Option, just create a left or right value with it. `val either = Left(option.value)`
+
+### Chaining
+
+You can use the `try` function to chain calls and have a single error handle at the end.
+
+```kotlin
+object Error
+fun String.toInt(): Either<Int, ERROR> = this.toIntOrNull()?.let { Left(it) } ?: Right(ERROR)
+fun Int.inBound(range: IntRange): Either<Int, ERROR> = if (this in range) Left(this) else Right(ERROR)
+
+val data: Either<String, ERROR> = Left("123")
+val result: Int = data.tryLeft(String::toInt)
+    .tryLeft { it.inBound(0..<100) }
+    .requireLeft { return }
+
+assertEquals(123, result)
+```
+
+You can do the same thing with an `Option`
+
+```kotlin
+fun String.toInt(): Option<Int> = this.toIntOrNull()?.let { Some(it) } ?: None
+fun Int.inBound(range: IntRange): Option<Int> = if (this in range) Some(this) else none
+
+val data: Option<String> = Some("123")
+val result: Int = data.trySome(String::toInt)
+    .tryLeft { it.inBound(0..<100) }
+    .requireSome { return }
+
+assertEquals(123, result)
+```
 
 ## Requiring values
 

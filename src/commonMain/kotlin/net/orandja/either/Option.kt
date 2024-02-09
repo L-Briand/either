@@ -1,6 +1,9 @@
 package net.orandja.either
 
 import kotlinx.serialization.Serializable
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 /**
  * Base implementation.
@@ -19,9 +22,13 @@ sealed class Option<out T> {
  * On a [Some] Option, calls the specified function [block] with [Some.value]
  * @return `this`
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T> Option<T>.alsoSome(
     block: (T) -> Unit,
 ): Option<T> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
     if (this is Some) block(value)
     return this
 }
@@ -30,9 +37,13 @@ inline fun <T> Option<T>.alsoSome(
  * On a [None] Option, calls the specified function [block]
  * @return `this`
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T> Option<T>.alsoNone(
     block: () -> Unit,
 ): Option<T> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
     if (this is None) block()
     return this
 }
@@ -43,10 +54,15 @@ inline fun <T> Option<T>.alsoNone(
  * - [Some]: Calls the specified function [onSome] with [Some.value].
  * @return `this`.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T> Option<T>.alsoBoth(
     onNone: () -> Unit,
     onSome: (T) -> Unit,
 ): Option<T> {
+    contract {
+        callsInPlace(onNone, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(onSome, InvocationKind.AT_MOST_ONCE)
+    }
     when (this) {
         None -> onNone()
         is Some -> onSome(this.value)
@@ -58,11 +74,17 @@ inline fun <T> Option<T>.alsoBoth(
  * On a [Some] Option, calls the specified function [block] to transform [Some.value].
  * @return New [Some] object with transformed [Option.value] value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T, R> Option<T>.letSome(
     block: (T) -> R,
-) = when (this) {
-    is Some -> Some(value.let(block))
-    None -> None
+): Option<R> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Some -> Some(value.let(block))
+        None -> None
+    }
 }
 
 /**
@@ -71,12 +93,19 @@ inline fun <T, R> Option<T>.letSome(
  * - [Some]: Calls the specified function [onSome] to transform [Some.value] into [L] type object.
  * @return [Left]<[L]> or [Right]<[R]> found value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T, L, R> Option<T>.letAsLeft(
     onSome: (T) -> L,
     onNone: () -> R,
-): Either<L, R> = when (this) {
-    None -> Right(onNone())
-    is Some -> Left(onSome(this.value))
+): Either<L, R> {
+    contract {
+        callsInPlace(onSome, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(onNone, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        None -> Right(onNone())
+        is Some -> Left(onSome(this.value))
+    }
 }
 
 /**
@@ -85,12 +114,19 @@ inline fun <T, L, R> Option<T>.letAsLeft(
  * - [Some]: Calls the specified function [onSome] to transform [Some.value] into [R] type object.
  * @return [Left]<[L]> or [Right]<[R]> found value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T, L, R> Option<T>.letAsRight(
     onNone: () -> L,
     onSome: (T) -> R,
-): Either<L, R> = when (this) {
-    None -> Left(onNone())
-    is Some -> Right(onSome(this.value))
+): Either<L, R> {
+    contract {
+        callsInPlace(onSome, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(onNone, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        None -> Left(onNone())
+        is Some -> Right(onSome(this.value))
+    }
 }
 
 /**
@@ -99,11 +135,17 @@ inline fun <T, L, R> Option<T>.letAsRight(
  * - [Some]<T>: Transform it into [Right]<T> value.
  * @return [Left]<[L]> or [Right]<[R]> found value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <L, R> Option<L>.letNoneAsRight(
     block: () -> R,
-): Either<L, R> = when (this) {
-    is Some -> Left(value)
-    None -> Right(block())
+): Either<L, R> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Some -> Left(value)
+        None -> Right(block())
+    }
 }
 
 /**
@@ -112,30 +154,48 @@ inline fun <L, R> Option<L>.letNoneAsRight(
  * - [Some]<T>: Transform it into [Left]<T> value.
  * @return [Left]<[L]> or [Right]<[R]> found value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <R, L> Option<R>.letNoneAsLeft(
     block: () -> L,
-): Either<L, R> = when (this) {
-    is Some -> Right(value)
-    None -> Left(block())
+): Either<L, R> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        is Some -> Right(value)
+        None -> Left(block())
+    }
 }
 
 /**
  * Try to get [Some.value] or calls [block] to return or stops the current execution block.
  * @return [Some.value] value.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T> Option<T>.requireSome(
     block: () -> Nothing,
-): T = when (this) {
-    None -> block()
-    is Some -> value
+): T {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+        returns() implies (this@requireSome is Some)
+    }
+    return when (this) {
+        None -> block()
+        is Some -> value
+    }
 }
 
 /**
  * If `this` is [Some], calls [block] with `this` to return or stops the current execution block.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T> Option<T>.requireNone(
     block: (Some<T>) -> Nothing,
 ) {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+        returns() implies (this@requireNone is None)
+    }
     if (this is Some) block(this)
 }
 
@@ -145,12 +205,19 @@ inline fun <T> Option<T>.requireNone(
  * - [Some]: Calls the specified function [onSome] to transform [Some.value] to [O] type.
  * @return Found [O] type object.
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T, O> Option<T>.foldBoth(
     onSome: (T) -> O,
     onNone: () -> O,
-): O = when (this) {
-    None -> onNone()
-    is Some -> onSome(this.value)
+): O {
+    contract {
+        callsInPlace(onSome, InvocationKind.AT_MOST_ONCE)
+        callsInPlace(onNone, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        None -> onNone()
+        is Some -> onSome(this.value)
+    }
 }
 
 /**
@@ -159,9 +226,28 @@ inline fun <T, O> Option<T>.foldBoth(
  * - [Some]: Returns [Some.value] object.
  * @return Found [T] type object
  */
+@OptIn(ExperimentalContracts::class)
 inline fun <T> Option<T>.foldNone(
     block: () -> T,
-): T = when (this) {
-    None -> block()
-    is Some -> value
+): T {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        None -> block()
+        is Some -> value
+    }
+}
+
+@OptIn(ExperimentalContracts::class)
+inline fun <Old, New> Option<Old>.trySome(
+    block: (Old) -> Option<New>,
+): Option<New> {
+    contract {
+        callsInPlace(block, InvocationKind.AT_MOST_ONCE)
+    }
+    return when (this) {
+        None -> None
+        is Some -> block(value)
+    }
 }
