@@ -24,6 +24,9 @@ $dokka.location:net.orandja.either//requireLeft/net.orandja.either.Either[TypePa
 $dokka.location:net.orandja.either//requireNone/net.orandja.either.Option[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[net.orandja.either.Some[TypeParam(bounds=[kotlin.Any?])],kotlin.Nothing]/PointingToDeclaration/either/net.orandja.either/require-none.html
 $dokka.location:net.orandja.either//requireRight/net.orandja.either.Either[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[net.orandja.either.Left[TypeParam(bounds=[kotlin.Any?])],kotlin.Nothing]/PointingToDeclaration/either/net.orandja.either/require-right.html
 $dokka.location:net.orandja.either//requireSome/net.orandja.either.Option[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function0[kotlin.Nothing]/PointingToDeclaration/either/net.orandja.either/require-some.html
+$dokka.location:net.orandja.either//tryLeft/net.orandja.either.Either[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),net.orandja.either.Either[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/either/net.orandja.either/try-left.html
+$dokka.location:net.orandja.either//tryRight/net.orandja.either.Either[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),net.orandja.either.Either[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/either/net.orandja.either/try-right.html
+$dokka.location:net.orandja.either//trySome/net.orandja.either.Option[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),net.orandja.either.Option[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/either/net.orandja.either/try-some.html
 $dokka.location:net.orandja.either/Either///PointingToDeclaration/either/net.orandja.either/-either/index.html
 $dokka.location:net.orandja.either/Either/invert/#/PointingToDeclaration/either/net.orandja.either/-either/invert.html
 $dokka.location:net.orandja.either/Either/left/#/PointingToDeclaration/either/net.orandja.either/-either/left.html
@@ -40,6 +43,8 @@ $dokka.location:net.orandja.either/EitherSerializer/serialize/#kotlinx.serializa
 $dokka.location:net.orandja.either/Left.AccessRightOnLeftException///PointingToDeclaration/either/net.orandja.either/-left/-access-right-on-left-exception/index.html
 $dokka.location:net.orandja.either/Left.AccessRightOnLeftException/AccessRightOnLeftException/#kotlin.Any?/PointingToDeclaration/either/net.orandja.either/-left/-access-right-on-left-exception/-access-right-on-left-exception.html
 $dokka.location:net.orandja.either/Left.Companion///PointingToDeclaration/either/net.orandja.either/-left/-companion/index.html
+$dokka.location:net.orandja.either/Left.Companion/False/#/PointingToDeclaration/either/net.orandja.either/-left/-companion/-false.html
+$dokka.location:net.orandja.either/Left.Companion/True/#/PointingToDeclaration/either/net.orandja.either/-left/-companion/-true.html
 $dokka.location:net.orandja.either/Left.Companion/Unit/#/PointingToDeclaration/either/net.orandja.either/-left/-companion/-unit.html
 $dokka.location:net.orandja.either/Left///PointingToDeclaration/either/net.orandja.either/-left/index.html
 $dokka.location:net.orandja.either/Left/Left/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/either/net.orandja.either/-left/-left.html
@@ -51,6 +56,7 @@ $dokka.location:net.orandja.either/Left/right/#/PointingToDeclaration/either/ne
 $dokka.location:net.orandja.either/Left/rightAsOption/#/PointingToDeclaration/either/net.orandja.either/-left/right-as-option.html
 $dokka.location:net.orandja.either/Left/rightOrNull/#/PointingToDeclaration/either/net.orandja.either/-left/right-or-null.html
 $dokka.location:net.orandja.either/Left/toString/#/PointingToDeclaration/either/net.orandja.either/-left/to-string.html
+$dokka.location:net.orandja.either/Left/value/#/PointingToDeclaration/either/net.orandja.either/-left/value.html
 $dokka.location:net.orandja.either/LeftSerializer///PointingToDeclaration/either/net.orandja.either/-left-serializer/index.html
 $dokka.location:net.orandja.either/LeftSerializer/LeftSerializer/#kotlinx.serialization.KSerializer[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/either/net.orandja.either/-left-serializer/-left-serializer.html
 $dokka.location:net.orandja.either/LeftSerializer/descriptor/#/PointingToDeclaration/either/net.orandja.either/-left-serializer/descriptor.html
@@ -72,6 +78,8 @@ $dokka.location:net.orandja.either/OptionSerializer/serialize/#kotlinx.serializa
 $dokka.location:net.orandja.either/Right.AccessLeftOnRightException///PointingToDeclaration/either/net.orandja.either/-right/-access-left-on-right-exception/index.html
 $dokka.location:net.orandja.either/Right.AccessLeftOnRightException/AccessLeftOnRightException/#kotlin.Any?/PointingToDeclaration/either/net.orandja.either/-right/-access-left-on-right-exception/-access-left-on-right-exception.html
 $dokka.location:net.orandja.either/Right.Companion///PointingToDeclaration/either/net.orandja.either/-right/-companion/index.html
+$dokka.location:net.orandja.either/Right.Companion/False/#/PointingToDeclaration/either/net.orandja.either/-right/-companion/-false.html
+$dokka.location:net.orandja.either/Right.Companion/True/#/PointingToDeclaration/either/net.orandja.either/-right/-companion/-true.html
 $dokka.location:net.orandja.either/Right.Companion/Unit/#/PointingToDeclaration/either/net.orandja.either/-right/-companion/-unit.html
 $dokka.location:net.orandja.either/Right///PointingToDeclaration/either/net.orandja.either/-right/index.html
 $dokka.location:net.orandja.either/Right/Right/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/either/net.orandja.either/-right/-right.html
@@ -83,12 +91,15 @@ $dokka.location:net.orandja.either/Right/right/#/PointingToDeclaration/either/n
 $dokka.location:net.orandja.either/Right/rightAsOption/#/PointingToDeclaration/either/net.orandja.either/-right/right-as-option.html
 $dokka.location:net.orandja.either/Right/rightOrNull/#/PointingToDeclaration/either/net.orandja.either/-right/right-or-null.html
 $dokka.location:net.orandja.either/Right/toString/#/PointingToDeclaration/either/net.orandja.either/-right/to-string.html
+$dokka.location:net.orandja.either/Right/value/#/PointingToDeclaration/either/net.orandja.either/-right/value.html
 $dokka.location:net.orandja.either/RightSerializer///PointingToDeclaration/either/net.orandja.either/-right-serializer/index.html
 $dokka.location:net.orandja.either/RightSerializer/RightSerializer/#kotlinx.serialization.KSerializer[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/either/net.orandja.either/-right-serializer/-right-serializer.html
 $dokka.location:net.orandja.either/RightSerializer/descriptor/#/PointingToDeclaration/either/net.orandja.either/-right-serializer/descriptor.html
 $dokka.location:net.orandja.either/RightSerializer/deserialize/#kotlinx.serialization.encoding.Decoder/PointingToDeclaration/either/net.orandja.either/-right-serializer/deserialize.html
 $dokka.location:net.orandja.either/RightSerializer/serialize/#kotlinx.serialization.encoding.Encoder#net.orandja.either.Right[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/either/net.orandja.either/-right-serializer/serialize.html
 $dokka.location:net.orandja.either/Some.Companion///PointingToDeclaration/either/net.orandja.either/-some/-companion/index.html
+$dokka.location:net.orandja.either/Some.Companion/False/#/PointingToDeclaration/either/net.orandja.either/-some/-companion/-false.html
+$dokka.location:net.orandja.either/Some.Companion/True/#/PointingToDeclaration/either/net.orandja.either/-some/-companion/-true.html
 $dokka.location:net.orandja.either/Some.Companion/Unit/#/PointingToDeclaration/either/net.orandja.either/-some/-companion/-unit.html
 $dokka.location:net.orandja.either/Some///PointingToDeclaration/either/net.orandja.either/-some/index.html
 $dokka.location:net.orandja.either/Some/Some/#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/either/net.orandja.either/-some/-some.html
