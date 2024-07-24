@@ -1,9 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
-    kotlin("multiplatform") version "1.9.22"
-    kotlin("plugin.serialization") version "1.9.22"
-    id("org.jetbrains.dokka") version "1.9.10"
+    kotlin("multiplatform") version "2.0.0"
+    kotlin("plugin.serialization") version "2.0.0"
+    id("org.jetbrains.dokka") version "1.9.20"
     id("maven-publish")
     id("signing")
 }
@@ -11,8 +12,8 @@ plugins {
 fun findProperty(name: String): String? = if (hasProperty(name)) property(name) as String else System.getenv(name)
 fun findFilledProperty(name: String): String? = findProperty(name)?.ifBlank { null }
 
-group = findProperty("group") !!
-version = findProperty("version") !!
+group = findProperty("group")!!
+version = findProperty("version")!!
 
 val ossrhUsername = findFilledProperty("osshr.username")
 val ossrhPassword = findFilledProperty("osshr.password")
@@ -27,10 +28,6 @@ repositories {
 
 kotlin {
     jvm {
-        compilations.getByName("main") {
-            kotlinOptions { jvmTarget = "1.8" }
-        }
-        jvmToolchain(8)
         withJava()
         withSourcesJar(true)
         testRuns.named("test") {
@@ -40,14 +37,16 @@ kotlin {
 
     // web
 
-    js {
+    js(IR) {
         browser()
         nodejs()
     }
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs { d8() }
-    // wasmWasi { nodejs() }
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmWasi { nodejs() }
 
     // https://kotlinlang.org/docs/native-target-support.html
 
@@ -82,7 +81,7 @@ kotlin {
     sourceSets {
         getByName("commonMain") {
             dependencies {
-                val serialization = findProperty("version.serialization") !!
+                val serialization = findProperty("version.serialization")!!
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization")
             }
         }
@@ -94,6 +93,14 @@ kotlin {
     }
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask::class.java) {
+    compilerOptions {
+        apiVersion.set(KotlinVersion.KOTLIN_2_0)
+        languageVersion.set(KotlinVersion.KOTLIN_2_0)
+    }
+}
+
+
 publishing {
     publications.withType<MavenPublication> {
         val publicationName = this@withType.name
@@ -103,26 +110,26 @@ publishing {
         }
         artifact(javadocJar)
         pom {
-            name.set(findProperty("POM_NAME") !!)
-            description.set(findProperty("POM_DESCRIPTION") !!)
-            url.set(findProperty("POM_URL") !!)
+            name.set(findProperty("POM_NAME")!!)
+            description.set(findProperty("POM_DESCRIPTION")!!)
+            url.set(findProperty("POM_URL")!!)
             licenses {
                 license {
-                    name.set(findProperty("POM_LICENSE_NAME") !!)
-                    url.set(findProperty("POM_LICENSE_URL") !!)
+                    name.set(findProperty("POM_LICENSE_NAME")!!)
+                    url.set(findProperty("POM_LICENSE_URL")!!)
                 }
             }
             developers {
                 developer {
-                    id.set(findProperty("POM_DEVELOPER_LBRIAND_ID") !!)
-                    name.set(findProperty("POM_DEVELOPER_LBRIAND_NAME") !!)
-                    email.set(findProperty("POM_DEVELOPER_LBRIAND_EMAIL") !!)
+                    id.set(findProperty("POM_DEVELOPER_LBRIAND_ID")!!)
+                    name.set(findProperty("POM_DEVELOPER_LBRIAND_NAME")!!)
+                    email.set(findProperty("POM_DEVELOPER_LBRIAND_EMAIL")!!)
                 }
             }
             scm {
-                connection.set(findProperty("POM_SCM_URL") !!)
-                developerConnection.set(findProperty("POM_SCM_CONNECTION") !!)
-                url.set(findProperty("POM_SCM_DEV_CONNECTION") !!)
+                connection.set(findProperty("POM_SCM_URL")!!)
+                developerConnection.set(findProperty("POM_SCM_CONNECTION")!!)
+                url.set(findProperty("POM_SCM_DEV_CONNECTION")!!)
             }
         }
     }
