@@ -15,8 +15,8 @@ fun findFilledProperty(name: String): String? = findProperty(name)?.ifBlank { nu
 group = findProperty("group")!!
 version = findProperty("version")!!
 
-val ossrhUsername = findFilledProperty("osshr.username")
-val ossrhPassword = findFilledProperty("osshr.password")
+val ossrhUsername = findFilledProperty("ossrh.username")
+val ossrhPassword = findFilledProperty("ossrh.password")
 val ossrhMavenEnabled = ossrhUsername != null && ossrhPassword != null
 val isSigningEnabled = findFilledProperty("signing.keyId") != null &&
         findFilledProperty("signing.password") != null &&
