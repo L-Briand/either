@@ -1,10 +1,9 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
-    kotlin("multiplatform") version "2.0.0"
-    kotlin("plugin.serialization") version "2.0.0"
-    id("org.jetbrains.dokka") version "1.9.20"
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.dokka)
     id("maven-publish")
     id("signing")
 }
@@ -28,7 +27,6 @@ repositories {
 
 kotlin {
     jvm {
-        withJava()
         withSourcesJar(true)
         testRuns.named("test") {
             executionTask.configure { useJUnitPlatform() }
@@ -42,23 +40,21 @@ kotlin {
         nodejs()
     }
 
-    @OptIn(ExperimentalWasmDsl::class)
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
     wasmJs { d8() }
 
-    @OptIn(ExperimentalWasmDsl::class)
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
     wasmWasi { nodejs() }
 
     // https://kotlinlang.org/docs/native-target-support.html
 
     // Tier1
-
-    macosX64()
     macosArm64()
     iosSimulatorArm64()
     iosX64()
 
     // Tier2
-
+    macosX64()
     linuxX64()
     linuxArm64()
     watchosSimulatorArm64()
@@ -81,8 +77,7 @@ kotlin {
     sourceSets {
         getByName("commonMain") {
             dependencies {
-                val serialization = findProperty("version.serialization")!!
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization")
+                implementation(libs.kotlin.serialization.json)
             }
         }
         getByName("commonTest") {
@@ -155,10 +150,11 @@ if (isSigningEnabled) {
     }
 }
 
-tasks.create<Delete>("cleanupGithubDocumentation") {
+tasks.register<Delete>("cleanupGithubDocumentation") {
     delete(file("docs"))
 }
-tasks.create<Copy>("generateGithubDocumentation") {
+
+tasks.register<Copy>("generateGithubDocumentation") {
     dependsOn("cleanupGithubDocumentation")
     dependsOn("dokkaHtml")
     val buildDir = layout.buildDirectory
