@@ -112,4 +112,3 @@ $dokka.location:net.orandja.either/SomeSerializer/descriptor/#/PointingToDeclara
 $dokka.location:net.orandja.either/SomeSerializer/deserialize/#kotlinx.serialization.encoding.Decoder/PointingToDeclaration/either/net.orandja.either/-some-serializer/deserialize.html
 $dokka.location:net.orandja.either/SomeSerializer/serialize/#kotlinx.serialization.encoding.Encoder#net.orandja.either.Some[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/either/net.orandja.either/-some-serializer/serialize.html
 net.orandja.either
-

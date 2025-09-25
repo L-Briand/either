@@ -156,7 +156,7 @@ tasks.register<Delete>("cleanupGithubDocumentation") {
 
 tasks.register<Copy>("generateGithubDocumentation") {
     dependsOn("cleanupGithubDocumentation")
-    dependsOn("dokkaHtml")
+    dependsOn("dokkaGeneratePublicationHtml")
     val buildDir = layout.buildDirectory
     from(buildDir.dir("dokka/html")).into("docs")
 }
