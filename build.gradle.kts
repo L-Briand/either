@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.sonatype.publish)
     id("maven-publish")
     id("signing")
 }
@@ -131,14 +132,17 @@ publishing {
 
     repositories {
         mavenLocal()
-        if (ossrhMavenEnabled) {
-            maven {
-                name = "sonatype"
-                setUrl("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-                credentials {
-                    username = ossrhUsername
-                    password = ossrhPassword
-                }
+    }
+}
+
+if(ossrhMavenEnabled) {
+    nexusPublishing {
+        repositories {
+            sonatype {
+                username = ossrhUsername
+                password = ossrhPassword
+                nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+                snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
             }
         }
     }
