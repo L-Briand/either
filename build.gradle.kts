@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.plugin.kotlinToolingVersion
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -28,6 +29,7 @@ repositories {
 
 kotlin {
     jvm {
+
         withSourcesJar(true)
         testRuns.named("test") {
             executionTask.configure { useJUnitPlatform() }
@@ -87,6 +89,11 @@ kotlin {
             }
         }
     }
+}
+
+tasks.withType(JavaCompile::class.java) {
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask::class.java) {
