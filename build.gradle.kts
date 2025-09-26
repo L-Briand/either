@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.kotlinToolingVersion
 
 plugins {
@@ -29,8 +30,10 @@ repositories {
 
 kotlin {
     jvm {
-
         withSourcesJar(true)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
         testRuns.named("test") {
             executionTask.configure { useJUnitPlatform() }
         }
