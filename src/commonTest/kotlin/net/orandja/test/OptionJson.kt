@@ -1,7 +1,6 @@
 package net.orandja.test
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.orandja.either.None
 import net.orandja.either.Option

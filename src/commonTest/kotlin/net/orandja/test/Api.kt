@@ -1,6 +1,32 @@
 package net.orandja.test
 
-import net.orandja.either.*
+import net.orandja.either.Either
+import net.orandja.either.Left
+import net.orandja.either.Option
+import net.orandja.either.Right
+import net.orandja.either.Some
+import net.orandja.either.alsoBoth
+import net.orandja.either.alsoLeft
+import net.orandja.either.alsoNone
+import net.orandja.either.alsoRight
+import net.orandja.either.alsoSome
+import net.orandja.either.foldBoth
+import net.orandja.either.foldLeft
+import net.orandja.either.foldNone
+import net.orandja.either.foldRight
+import net.orandja.either.letAsLeft
+import net.orandja.either.letAsRight
+import net.orandja.either.letBoth
+import net.orandja.either.letLeft
+import net.orandja.either.letNoneAsLeft
+import net.orandja.either.letNoneAsRight
+import net.orandja.either.letRight
+import net.orandja.either.letSome
+import net.orandja.either.requireLeft
+import net.orandja.either.requireNone
+import net.orandja.either.requireRight
+import net.orandja.either.requireSome
+import net.orandja.either.tryLeft
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -50,7 +76,7 @@ class Api {
     @Test
     fun transformation() {
         fun String.toInt(): Either<Int, ERROR> = this.toIntOrNull()?.let { Left(it) } ?: Right(ERROR)
-        fun Int.inBound(range: IntRange) = if(this in range) Left(this) else Right(ERROR)
+        fun Int.inBound(range: IntRange) = if (this in range) Left(this) else Right(ERROR)
 
         val data: Either<String, ERROR> = Left("123")
         val result: Int = data.tryLeft(String::toInt)

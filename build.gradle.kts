@@ -1,6 +1,6 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.plugin.kotlinToolingVersion
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -13,6 +13,7 @@ plugins {
 
 fun findProperty(name: String): String? = if (hasProperty(name)) property(name) as String else System.getenv(name)
 fun findFilledProperty(name: String): String? = findProperty(name)?.ifBlank { null }
+fun booleanProperty(name: String): Boolean = findProperty(name)?.toBoolean() ?: false
 
 group = findProperty("group")!!
 version = findProperty("version")!!
@@ -24,9 +25,8 @@ val isSigningEnabled = findFilledProperty("signing.keyId") != null &&
         findFilledProperty("signing.password") != null &&
         findFilledProperty("signing.secretKeyRingFile") != null
 
-repositories {
-    mavenCentral()
-}
+val jvmOnly = booleanProperty("debug.jvmOnly")
+val isAppleDevice = org.gradle.internal.os.OperatingSystem.current().isMacOsX
 
 kotlin {
     jvm {
@@ -41,52 +41,57 @@ kotlin {
 
     // web
 
-    js(IR) {
-        browser()
-        nodejs()
+    if (!jvmOnly) {
+        js {
+            browser()
+        }
+
+        @OptIn(ExperimentalWasmDsl::class)
+        wasmJs { d8() }
+        @OptIn(ExperimentalWasmDsl::class)
+        wasmWasi { nodejs() }
+
+        // https://kotlinlang.org/docs/native-target-support.html
+
+        if (isAppleDevice) {
+            // Tier1
+            macosArm64() // iOS only
+            iosSimulatorArm64() // iOS only
+            iosArm64() // iOS only
+
+            // Tier2
+            watchosSimulatorArm64() // iOS only
+            watchosArm64() // iOS only
+            tvosSimulatorArm64() // iOS only
+            tvosArm64() // iOS only
+
+            // Tier3
+            watchosDeviceArm64() // iOS only
+            iosX64() // iOS only
+        }
+
+        // Tier2
+        linuxX64()
+        linuxArm64()
+
+        // Tier3
+        androidNativeArm32()
+        androidNativeArm64()
+        androidNativeX86()
+        androidNativeX64()
+        mingwX64()
     }
 
-    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
-    wasmJs { d8() }
-
-    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
-    wasmWasi { nodejs() }
-
-    // https://kotlinlang.org/docs/native-target-support.html
-
-    // Tier1
-    macosArm64()
-    iosSimulatorArm64()
-    iosX64()
-
-    // Tier2
-    macosX64()
-    linuxX64()
-    linuxArm64()
-    watchosSimulatorArm64()
-    watchosX64()
-    watchosArm32()
-    watchosArm64()
-    tvosSimulatorArm64()
-    tvosX64()
-    tvosArm64()
-    iosArm64()
-
-    // Tier3
-    androidNativeArm32()
-    androidNativeArm64()
-    androidNativeX86()
-    androidNativeX64()
-    mingwX64()
-    watchosDeviceArm64()
-
+    compilerOptions {
+        freeCompilerArgs.add("-XXLanguage:+FullValueClasses")
+    }
     sourceSets {
-        getByName("commonMain") {
+        commonMain {
             dependencies {
                 implementation(libs.kotlin.serialization.json)
             }
         }
-        getByName("commonTest") {
+        commonTest {
             dependencies {
                 implementation(kotlin("test"))
             }
@@ -99,13 +104,14 @@ tasks.withType(JavaCompile::class.java) {
     targetCompatibility = JavaVersion.VERSION_17.toString()
 }
 
+val kotlinVersion = libs.versions.kotlin.asProvider().get().substringBeforeLast(".").let { KotlinVersion.fromVersion(it) }
+
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask::class.java) {
     compilerOptions {
-        apiVersion.set(KotlinVersion.KOTLIN_2_0)
-        languageVersion.set(KotlinVersion.KOTLIN_2_0)
+        apiVersion.set(kotlinVersion)
+        languageVersion.set(kotlinVersion)
     }
 }
-
 
 publishing {
     publications.withType<MavenPublication> {
@@ -145,7 +151,7 @@ publishing {
     }
 }
 
-if(ossrhMavenEnabled) {
+if (ossrhMavenEnabled) {
     nexusPublishing {
         repositories {
             sonatype {
@@ -165,10 +171,12 @@ if (isSigningEnabled) {
 }
 
 tasks.register<Delete>("cleanupGithubDocumentation") {
+    description = "Clean up the generated Github documentation"
     delete(file("docs"))
 }
 
 tasks.register<Copy>("generateGithubDocumentation") {
+    description = "Generate the Github documentation"
     dependsOn("cleanupGithubDocumentation")
     dependsOn("dokkaGeneratePublicationHtml")
     val buildDir = layout.buildDirectory

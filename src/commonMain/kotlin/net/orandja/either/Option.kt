@@ -10,12 +10,12 @@ import kotlin.contracts.contract
  * Can either be [Some] or [None]
  */
 @Serializable(OptionSerializer::class)
-sealed class Option<out T> {
+sealed interface Option<out T> {
     /** Underlying value of [Some] implementation */
-    abstract val value: T
+    val value: T
 
     /** @return [Some.value] if possible or null */
-    abstract val valueOrNull: T?
+    val valueOrNull: T?
 }
 
 /**

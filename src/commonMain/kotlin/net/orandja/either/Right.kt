@@ -1,13 +1,12 @@
 package net.orandja.either
 
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmStatic
 
 /**
  * Right implementation of [Either]
  */
 @Serializable(RightSerializer::class)
-data class Right<out R>(override val right: R) : Either<Nothing, R>() {
+value class Right<out R>(override val right: R) : Either<Nothing, R> {
 
     val value: R get() = left
 
@@ -16,13 +15,8 @@ data class Right<out R>(override val right: R) : Either<Nothing, R>() {
         IllegalStateException("Cannot get `left` on Right($value)", value as? Throwable)
 
     companion object {
-        @JvmStatic
         val Unit = Right(kotlin.Unit)
-
-        @JvmStatic
         val True = Left(true)
-
-        @JvmStatic
         val False = Left(false)
     }
 
@@ -43,10 +37,10 @@ data class Right<out R>(override val right: R) : Either<Nothing, R>() {
     override fun rightAsOption(): Option<R> = Some(right)
 
     /** @see Either.leftOrNull */
-    override val leftOrNull: Nothing? = null
+    override val leftOrNull: Nothing? get() = null
 
     /** @see Either.rightOrNull */
-    override val rightOrNull: R? = right
+    override val rightOrNull: R? get() = right
 
     override fun toString(): String = "Right($right)"
 }

@@ -1,6 +1,5 @@
 package net.orandja.test
 
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.orandja.either.Either
 import net.orandja.either.Left

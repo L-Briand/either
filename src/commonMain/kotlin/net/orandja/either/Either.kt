@@ -9,42 +9,42 @@ import kotlin.contracts.contract
  * Base implementation. Can either be [Left] or [Right].
  */
 @Serializable(EitherSerializer::class)
-sealed class Either<out L, out R> {
+sealed interface Either<out L, out R> {
     /** Underlying value on the [Left] implementation */
-    abstract val left: L
+    val left: L
 
     /** Underlying value on the [Right] implementation */
-    abstract val right: R
+    val right: R
 
     /**
      * Swap the type of `this`. A [Left] becomes [Right]; A [Right] becomes [Left].
      * @return Inverted object.
      */
-    abstract fun invert(): Either<R, L>
+    fun invert(): Either<R, L>
 
     /**
      * @return Depending on `this` kind:
      *  - on [Left]: Option [Some] of the [left] value
      *  - on [Right]: [None]
      */
-    abstract fun leftAsOption(): Option<L>
+    fun leftAsOption(): Option<L>
 
     /**
      * @return Depending on `this` kind:
      *  - on [Left]: [None]
      *  - on [Right]: Option [Some] of the [right] value
      */
-    abstract fun rightAsOption(): Option<R>
+    fun rightAsOption(): Option<R>
 
     /**
      * @return [left] if `this` is [Left] or null
      */
-    abstract val leftOrNull: L?
+    val leftOrNull: L?
 
     /**
      * @return [right] if `this` is [Right] or null
      */
-    abstract val rightOrNull: R?
+    val rightOrNull: R?
 }
 
 /**
